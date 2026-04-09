@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Shubham Manekar — Python Backend Developer</title>
 <meta name="description" content="Portfolio of Shubham Manekar - Python Backend Developer with 6.4+ years experience in Flask, FastAPI, gRPC, Docker">
+<meta name="theme-color" content="#060611">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=General+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -239,7 +241,20 @@ const D={name:"Shubham Manekar",title:"Python Backend Developer",tagline:"Flask 
 let data;try{const s=localStorage.getItem("pf");data=s?JSON.parse(s):JSON.parse(JSON.stringify(D))}catch(e){data=JSON.parse(JSON.stringify(D))}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 
+// Password protection for dashboard
+const DASHBOARD_PASSWORD = "sm@2025";  // Change to something stronger
+let isAuthed = false;
+
 function go(p){
+  if(p === 'dash' && !isAuthed) {
+    const pwd = prompt('Enter dashboard password:');
+    if(pwd !== DASHBOARD_PASSWORD) {
+      alert('❌ Incorrect password');
+      return;
+    }
+    isAuthed = true;
+  }
+  
   document.getElementById('pg-home').style.display=p==='home'?'block':'none';
   document.getElementById('pg-dash').style.display=p==='dash'?'block':'none';
   document.getElementById('nb0').classList.toggle('on',p==='home');
